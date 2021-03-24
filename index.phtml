@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dessins</title>
+</head>
+<body>
+    <h1>Dessins</h1>
+        <form action="" method="post">
+            <label for="shape">Choisir une forme à dessiner :</label>
+            <select id="shape" name="shape">
+                <option value="Rectangle"<?php if ($_POST['shape'] === 'Rectangle'): ?> selected <?php endif ?>>Rectangle</option>
+                <option value="Cercle" <?php if ($_POST['shape'] === 'Cercle'): ?> selected <?php endif ?>>Cercle</option>
+                <option value="Triangle" <?php if ($_POST['shape'] === 'Triangle'): ?> selected <?php endif ?>>Triangle</option>
+            </select>
+            <button>CREER</button>
+            <?php if (!empty ($_POST)) ?>
+                <?php if ($_POST['shape']=='Rectangle'): ?>
+                    <form method="post">
+                        <div>
+                            <label for="x">X :</label>
+                            <input name="x" id="x" type="number"></input>
+                        </div>
+                        <div>
+                            <label for="y">Y :</label>
+                            <input name="y" id="y" type="number"></input>
+                        </div>
+                        <div>
+                            <label for="width">width :</label>
+                            <input name="width" id="width" type="number"></input>
+                        </div>
+                        <div>
+                            <label for="height">height :</label>
+                            <input name="height" id="height" type="number"></input>
+                        </div>
+                        <div>
+                            <label for="color">Color :</label>
+                            <select name="color" id="color">
+                                <option value="Blue"> Blue</option>
+                                <option value="Red"> Red</option>
+                                <option value="Purple">Purple</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="opacity">Opacity : </label>
+                            <input name="opacity" id="opacity" type="number" step="0.1" min ="0.1" max="1"></input>
+                        </div>
+                        <button>DESSINER</button>
+                    </form>
+                <?php endif ?>
+                <?php if ($_POST['shape']=='Cercle'): ?>
+                    <form method="post">
+                        <div>
+                            <label for="x">X :</label>
+                            <input name="x" id="x" type="number"></input>
+                        </div>
+                        <div>
+                            <label for="y">Y :</label>
+                            <input name="y" id="y" type="number"></input>
+                        </div>
+                        <div>
+                            <label for="rx">rx :</label>
+                            <input name="rx" id="rx" type="number"></input>
+                        </div>
+                        <div>
+                            <label for="ry">ry :</label>
+                            <input name="ry" id="ry" type="number"></input>
+                        </div>
+                        <div>
+                            <label for="color">Color :</label>
+                            <select name="color" id="color">
+                                <option value="Blue"> Blue</option>
+                                <option value="Red"> Red</option>
+                                <option value="Purple">Purple</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="opacity">Opacity :</label>
+                            <input name="opacity" id="opacity" type="number" step="0.1" min ="0.1" max="1"></input>
+                        </div>
+                        <button>DESSINER</button>
+                    </form>
+                <?php endif ?>
+                <?php if ($_POST['shape']=='Triangle'): ?>
+                    <form method="post">
+                        <div>
+                            <label for="x">X :</label>
+                            <input name="x" id="x" type="number"></input>
+                        </div>
+                        <div>
+                            <label for="y">Y :</label>
+                            <input name="y" id="y" type="number"></input>
+                        </div>
+                        <div>
+                            <label for="t1">t1 :</label>
+                            <input name="t1" id="t1" type="texte"></input>
+                        </div>
+                        <div>
+                            <label for="t2">t2 :</label>
+                            <input name="t2" id="t2" type="texte"></input>
+                        </div>
+                        <div>
+                            <label for="color">Color :</label>
+                            <select name="color" id="color">
+                                <option value="Blue"> Blue</option>
+                                <option value="Red"> Red</option>
+                                <option value="Purple">Purple</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="opacity">Opacity :</label>
+                            <input name="opacity" id="opacity" type="number" step="0.1" min ="0.1" max="1"></input>
+                        </div>
+                        <button>DESSINER</button>
+                    </form>
+                <?php endif ?>
+        </form>
+    
+    <svg width="800" height="600">
+        <?php if ($_POST['shape']=='Rectangle' && isset($_POST['width'])): ?>
+            <?= $rectangle->draw() ?>
+        <?php endif ?>
+        <?php if ($_POST['shape']=='Cercle' && isset($_POST['rx'])): ?>
+            <?= $circle->draw() ?>
+        <?php endif ?>
+        <?php if ($_POST['shape']=='Triangle' && isset($_POST['t1'])): ?>
+            <?= $triangle->draw() ?>
+        <?php endif ?>
+    </svg>
+</body>
+</html>
